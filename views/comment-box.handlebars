@@ -1,0 +1,73 @@
+<!-- col display of comment box-->
+<div class="card" id="comment-card">
+  <div class="card-heading rounded-top">
+    {{#route_desc}} 
+    <h2 class="card-title px-3">
+      <a class="text-dark" role="route_id" id="{{route_id}}">{{from_route}}</a>
+      <img src="/img/location.png" width="25" height="25" alt="">
+      <a class="text-light" href="/route/{{idTo_road}}">
+        {{to_route}}
+      </a>
+      <a href="#indicator" class=" text-dark pull-right" data-toggle="modal"><i class="fa fa-info-circle"></i></a>
+    </h2>
+    {{/route_desc}}
+  </div>
+  <div class="alert alert-danger" role="alert">
+    <b>All fields are required!</b>
+  </div>
+  <b class="text-white text-center bg-success py-2" id="feedback"></b>
+  <div class="card-body p-2 py-3">
+    <form method="post">
+      <div class="form-group">
+        <label class="sr-only" for="name">Name</label>
+        <input type="text" class="form-control" name="name" placeholder="Enter your name">
+      </div>
+      <div class="form-group">
+        <label class = "sr-only" for = "name">Your Comment</label>
+        <textarea rows = "5" name="comment" class = "form-control"></textarea>
+      </div>
+      <div id="traffic">
+        <span id="lights">
+          <input type="radio" name ="light" value="1" data-toggle="tooltip" data-placement="top" title="Heavy traffic">&nbsp;<i class="fa fa-circle icon-red"></i> 
+          <input type="radio" name ="light" value="2" data-toggle="tooltip" data-placement="top" title="Mild traffic">&nbsp;<i class="fa fa-circle fa-2 icon-yellow"></i>
+          <input type="radio" name ="light" value="3" data-toggle="tooltip" data-placement="top" title="No traffic">&nbsp;<i class="fa fa-circle icon-green"></i>
+          <input type="hidden" name="route" class="btn btn-success" value="' . $route . '">
+        </span>
+        <span id="info">
+          <input type="radio" name="source" data-toggle="tooltip" data-placement="top" title="witness to traffic" value="eye">&nbsp;<i class="zmdi zmdi-eye"></i> 
+          <input type="radio" name="source" data-toggle="tooltip" data-placement="bottom" title="Hearsay" value="hearing">&nbsp;<i class="zmdi zmdi-hearing"></i> 
+          <input type="radio" name="source" data-toggle="tooltip" data-placement="top" title="Heared on radio" value="radio">&nbsp;<i class="zmdi zmdi-radio"></i> 
+        </span>
+      </div>
+      <input type="reset" class="d-none">
+      <button class="btn btn-sm btn-success" id="post-comment"> Post comment </button>
+    </form>
+  </div>
+</div>
+<script>
+  var socket = io();
+  $('#post-comment').click(function (e) {
+    e.preventDefault();
+    var $this = $(this);
+    var $route_id = $("a[role='route_id']").attr('id');
+    var $name = $("input[name='name']").val();
+    var $comment = $("textarea[name='comment']").val();
+    var $light = $("input:checked[name='light']").val();
+    var $source = $("input:checked[name='source']").val();
+    var $url = '/post_comment/' + $route_id;
+    if ((($name && $comment) === '') || (($light && $source) === undefined)) {
+      $("div[role='alert']").fadeIn();
+      setTimeout(function () {
+        $("div[role='alert']").fadeOut();
+      }, 2000);
+    } else {
+      $this.attr("disabled", true);
+      $.post($url, {name: $name, comment: $comment, source: $source, light: $light}, function (res) {
+        $("input:reset").trigger('click');
+        socket.emit('append-comment', $route_id);
+        $this.attr("disabled", false);
+        $("#feedback").text(res).fadeIn().fadeOut();
+      });
+    }
+  });
+</script>

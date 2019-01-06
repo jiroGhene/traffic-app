@@ -1,0 +1,25 @@
+{{> nav }}
+<div class="offset-3 col-6 my-5" id="reg-body">
+  {{#if error}}
+  {{#each error}}
+  <div class="alert alert-danger">{{msg}}</div>
+  {{/each}}
+  {{/if}}
+  <form method="post" action="/register">
+    <div class="form-group">
+      <label>Name</label>
+      <input type="text" name="name" class="form-control" placeholder="Enter name">
+    </div>
+    <div class="form-group">
+      <label>Email</label>
+      <input type="email" name="email" class="form-control" placeholder="Enter email">
+      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    </div>
+    <div class="form-group">
+      <label>Password</label>
+      <input type="password" name="password" class="form-control" placeholder="Password">
+    </div>
+    <button type="submit" class="btn btn-success">Submit</button>
+  </form>
+</div>
+{{> footer }}

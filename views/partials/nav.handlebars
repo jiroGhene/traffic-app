@@ -1,0 +1,33 @@
+{{> header }}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="/">
+    <img src="/img/location.png" width="30" height="30" class="d-inline-block align-top">
+  </a>
+  <ul class="navbar-nav mr-auto">
+    <li class="nav-item">
+      <a class="nav-link" href="/home">Home</a>
+    </li>
+  </ul>
+</nav>
+
+<!-- Modal -->
+<div class="modal fade" id="indicator">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <h5>Light Indicator</h5>
+        <p><i class="fa fa-circle icon-green"></i>&nbsp;&nbsp;indicates <b>no traffic</b></p>
+        <p> <i class="fa fa-circle icon-yellow"></i>&nbsp;&nbsp;indicates <b>less traffic</b></p>
+        <p>  <i class="fa fa-circle icon-red"></i>&nbsp;&nbsp;indicates <b>heavy traffic </b></p>
+        <hr>
+        <h5>Source Indicator</h5>
+        <p> <i class="zmdi zmdi-eye"></i>&nbsp;&nbsp;indicates <b>witness to the traffic </b></p>
+        <p> <i class="zmdi zmdi-hearing"></i>&nbsp;&nbsp;indicates <b>a hearsay</b></p>
+        <p> <i class="zmdi zmdi-radio"></i>&nbsp;&nbsp;indicates <b>heared on radio</b> </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

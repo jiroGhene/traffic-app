@@ -1,0 +1,22 @@
+{{> nav }}
+<div id="black"></div>
+<div class="container" id='displayRoute'>
+  <div class="text-center">
+    {{#each road}}
+    <h4 class="text-light" id="road_name"><b>{{road_name}}</b></h4>
+    {{/each}}
+    <select class="form-control" id="display_routes" style="font-weight: bold;">
+      <option>Available Routes</option>
+      {{#each route}}
+      <option style="font-weight: bold;" value="{{route_id}}"> {{from_route}} to {{to_route}} </option>
+      {{/each }}
+    </select>
+  </div>
+
+  <!--display comments and comment box for selected route-->
+  <div class="row" id="comments_on_route">
+    <div id="comments_wrapper" class="col-sm-6"></div>
+    <div id="comment_box" class="col-sm-6"></div>
+  </div>
+</div>
+{{> footer }}

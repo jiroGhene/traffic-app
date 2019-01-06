@@ -1,0 +1,80 @@
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  margin: 0px;
+}
+a, a:hover{
+  text-decoration: none;
+}
+nav header{
+  display: inline;
+}
+.background{
+  background: url(/img/city.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  background-size: cover;
+  position: absolute;
+  min-height: 100%;
+  min-width: 100%;
+}
+.navbar{
+  z-index: 1000;
+}
+#index-header{
+  margin-top: 40px;
+}
+#index-body{
+  text-align: center;
+  color: white;
+}
+#index-body img{
+  height: 90px;
+  width: 90px;
+  margin-top: 50px;
+  margin-bottom: -35px;
+}
+#index-body .jumbotron{
+  background: rgba(0,0,0,.8);
+}
+#icon-lights i{
+  font-size: 14px;
+}
+#chat-container{
+  margin: auto;
+}
+#row1.animated{
+  -webkit-animation-duration: 3s;
+  animation-duration: 3s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+#row1 .card{
+  background: rgba(0,0,0,.8);
+  margin-bottom: 25px;
+  color: whitesmoke;
+  border-radius: 10px;
+  padding: 2em;
+}
+#row1 .card .btn{
+  white-space: normal;
+}
+.icon-red{
+  color: red;
+}
+.icon-yellow{
+  color:#ffcc33;
+}
+.icon-green{
+  color:limegreen;
+}
+.modal-body i{
+  vertical-align: middle;
+  font-size: 1.7em;
+}
+@media screen and (max-width: 768px){
+  #index-body, #login-body, #reg-body{
+    max-width: 100%;
+    margin-left: 0px;
+  }
+}
